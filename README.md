@@ -97,6 +97,10 @@ Also you can set the initial passcode lock state to your own implementation of t
 
 The PasscodeLock will look for `PasscodeLockView.xib` inside your app bundle and if it can't find it will load its default one, so if you want to have a custom design create a new `xib` with the name `PasscodeLockView` and set its owner to an instance of `PasscodeLockViewController` class.
 
+Keep in mind that when using custom classes that are defined in another module, you'll need to set the Module field to that module's name in the Identity Inspector:
+
+<img src="https://raw.githubusercontent.com/yankodimitrov/SwiftPasscodeLock/master/identity-inspector.png">
+
 Then connect the `view` outlet to the view of your `xib` file and make sure to conenct the remaining `IBOutlet`s and `IBAction`s.
 
 PasscodeLock comes with two view components: `PasscodeSignPlaceholderView` and `PasscodeSignButton` that you can use to create your own custom designs. Both classes are `@IBDesignable` and `@IBInspectable`, so you can see their appearance and change their properties right inside the interface builder:
