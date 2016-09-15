@@ -89,7 +89,7 @@ public class PasscodeLock: PasscodeLockType {
         dispatch_async(dispatch_get_main_queue()) {
             
             if success {
-                
+                EnterPasscodeState.incorrectPasscodeAttempts = 0
                 self.delegate?.passcodeLockDidSucceed(self)
             }
         }
