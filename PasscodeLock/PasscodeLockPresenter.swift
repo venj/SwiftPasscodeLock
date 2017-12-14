@@ -34,6 +34,8 @@ open class PasscodeLockPresenter {
         passcodeConfiguration = configuration
         
         passcodeLockVC = viewController
+
+        NotificationCenter.default.addObserver(self, selector: #selector(screenRotated(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 
     public convenience init(mainWindow window: UIWindow?, configuration: PasscodeLockConfigurationType) {
@@ -41,7 +43,11 @@ open class PasscodeLockPresenter {
         
         self.init(mainWindow: window, configuration: configuration, viewController: passcodeLockVC)
     }
-    
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+
     // HACK: below function that handles not presenting the keyboard in case Passcode is presented
     //       is a smell in the code that had to be introduced for iOS9 where Apple decided to move the keyboard
     //       in a UIRemoteKeyboardWindow.
@@ -55,6 +61,14 @@ open class PasscodeLockPresenter {
             , keyboardWindow.description.hasPrefix("<UIRemoteKeyboardWindow")
         {
             keyboardWindow.alpha = hide ? 0.0 : 1.0
+        }
+    }
+
+    @objc func screenRotated(_ sender: Any?) {
+        if let frame = mainWindow?.rootViewController?.view.frame {
+            DispatchQueue.main.async {
+                self.passcodeLockWindow.frame = frame
+            }
         }
     }
     
