@@ -123,7 +123,7 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
         notificationCenter?.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         notificationCenter?.removeObserver(self, name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
-    
+
     @objc open func appWillEnterForegroundHandler(_ notification: Notification) {
         
         if passcodeConfiguration.shouldRequestTouchIDImmediately {

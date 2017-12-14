@@ -14,7 +14,7 @@ public class LockSplashView: UIView {
         
         let image = UIImage(named: "fake-logo")
         let view = UIImageView(image: image)
-        view.contentMode = UIViewContentMode.Center
+        view.contentMode = UIViewContentMode.center
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -27,14 +27,14 @@ public class LockSplashView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         
         addSubview(logo)
         setupLayout()
     }
     
     convenience init() {
-        self.init(frame: UIScreen.mainScreen().bounds)
+        self.init(frame: UIScreen.main.bounds)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -49,10 +49,10 @@ public class LockSplashView: UIView {
         
         let views = ["logo": logo]
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[logo]|", options: [], metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[logo]", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[logo]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[logo]", options: [], metrics: nil, views: views))
         
-        addConstraint(NSLayoutConstraint(item: logo, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: logo, attribute: .CenterY, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: logo, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: logo, attribute: .centerY, multiplier: 1, constant: 0))
     }
 }
